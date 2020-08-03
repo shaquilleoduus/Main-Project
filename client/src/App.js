@@ -7,7 +7,7 @@ import Login from './Login'
 import Question from './Question'
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import axios from 'axios';
-import Login from './login';
+
 
 function App(){
 
