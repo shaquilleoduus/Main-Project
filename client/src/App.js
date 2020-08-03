@@ -7,7 +7,7 @@ import Login from './Login'
 import Question from './Question'
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import axios from 'axios';
-
+import Timer from "./timer"
 
 function App(){
 
@@ -16,10 +16,12 @@ function App(){
     <Router>
       <div className="App">
         <Nav />
+        <Timer/>
         <Route path="/about" component={About} />
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route path="/question" component={Question} />
+        
       </div>
     </Router>
   );

@@ -1,13 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import './App.css';
+import './question.css';
 import axios from 'axios';
 import {Questionnaire} from './components';
+
+
 
 function Question() {
   const [questions, setQuestion] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [gameEnded, setGameEnded] = useState(false);
+ 
 
   useEffect( () => {
     getAPI();
@@ -34,6 +37,7 @@ function Question() {
         setGameEnded(true);
     }
   };
+  
 
   return gameEnded ? (
   <h1>Your Score was {score}</h1>
@@ -41,6 +45,7 @@ function Question() {
    ) : (
     questions.length > 0 ? (
     <div className='question_container'>
+       
         <Questionnaire 
             data={questions[currentIndex]} 
             handleAnswer= {handleAnswer} />   
@@ -50,5 +55,6 @@ function Question() {
   ));
     
 }
+
 
 export default Question;
