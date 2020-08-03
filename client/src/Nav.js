@@ -1,21 +1,33 @@
 import React from 'react';
-import './App.css';
+import './nav.css';
 import axios from 'axios';
 
+
+
 function Nav() {
-  
+
   return (
-    <nav>
-      
-      <h3>LOGO</h3>
-      <ul>
-          <li>Home</li>
-          <li>Register</li>
-          <li>Login</li>
-      </ul>
-      
-    </nav>
+    
+    <div class="topnav">
+
+  <a href="/">Home</a>
+  <a href="/register">Register</a>
+
+  <div class="topnav-centered">
+    <a href="#home" class="active">LeaderBoards</a>
+  </div>
+
+  <div class="topnav-right">
+    <a href="/question">Quiz</a>
+    <a href="/login">Login</a>
+  </div>
+
+</div>
   );
 }
+
+
+ 
+
 
 export default Nav;

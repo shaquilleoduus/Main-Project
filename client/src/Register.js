@@ -10,10 +10,6 @@ function Register() {
     userPassword: ''
   });
 
-  const [message, setMessage] = useState ({
-    message: ''
-  });
-
   const setData = (e) => {
       setRegisterDetails({
       ...registerDetails,
@@ -31,8 +27,6 @@ function Register() {
       userPassword: registerDetails.userPassword
     });
 
- 
-
     const config = {
       headers: {
         'Content-Type': 'application/json'
@@ -41,21 +35,17 @@ function Register() {
     
     const resu = await axios.post("/register", body, config)
       console.log(resu);
-      setMessage({
-        message:resu.data
-      })
   }
 
   return (
     <div>
-      <h1>Register below</h1>
+      <h1>Welcome! Please register to join Hotline Quiz!</h1>
     
       <form>
-        <input type="text" name="userName" onChange={setData}/>
-        <input type="email" name="userEmail" onChange={setData}/>
-        <input type="password" name="userPassword" onChange={setData}/>
-        <button type="submit" onClick={submitForm}>Register</button>
-        <h1>{message.message}</h1>
+        <input placeholder="Username"type="text" name="userName" onChange={setData}/>
+        <input placeholder="Email" type="email" name="userEmail" onChange={setData}/>
+        <input placeholder="Password" type="password" name="userPassword" onChange={setData}/>
+        <button id="button2" type="submit" onClick={submitForm}>Sign up!</button>
       </form>
     </div>
   );
