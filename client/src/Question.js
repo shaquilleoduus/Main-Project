@@ -1,60 +1,77 @@
 import React, {useState, useEffect} from 'react';
-
+import './App.css';
 import axios from 'axios';
 import {Questionnaire} from './components';
 
-
-
-function Question() {
+function Question({loginStatus, userId}) {
   const [questions, setQuestion] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
-  const [gameEnded, setGameEnded] = useState(false);
- 
+  const [showAnswers, setShowAnswers] = useState(false);
+
+  
 
   useEffect( () => {
     getAPI();
     console.log("Page Loaded");
-  }, [])
+  }, [loginStatus])
 
   const getAPI = async() => {
     const res = await axios.get('https://opentdb.com/api.php?amount=10&category=18&difficulty=hard&type=multiple')
     console.log(res.data);  //res.data.value
 
-    setQuestion(res.data.results);
-    
+    const questions = res.data.results.map((question) =>
+    ({
+      ...question, answers: [question.correct_answer,
+      ...question.incorrect_answers
+    ].sort(() => Math.random() - 0.5),
+    }));
+    setQuestion(questions);
   }
 
   const handleAnswer = (answer) => {
-      const newIndex = currentIndex +1
-    setCurrentIndex(newIndex);
-
-    if(answer === questions[currentIndex].correct_answer) {
-        setScore(score + 1);
+    if(!showAnswers) {
+      if(answer === questions[currentIndex].
+        correct_answer) {
+          setScore(score + 1);
+          fetch('/update/'+userId, {method:'POST'})
+      }
     }
-
-    if(newIndex >= questions.length) {
-        setGameEnded(true);
-    }
+    setShowAnswers(true);
   };
-  
-
-  return gameEnded ? (
-  <h1>Your Score was {score}</h1>
+    // if(newIndex >= questions.length) {
+    //     setGameEnded(true);
+    // }
+  const handleNextQuestion = () => {
+    setShowAnswers(false);
+    setCurrentIndex(currentIndex + 1);
+  };
+  return(
+    loginStatus
+  ?
+      questions.length > 0 
+    ? 
+      <div>
+        {
+          currentIndex >= questions.length 
+        ? 
+          <h1>
+            Your Score is {score}.
+          </h1>
+        : 
+          <Questionnaire 
+            data={questions[currentIndex]}
+            showAnswers={showAnswers}
+            handleNextQuestion={handleNextQuestion}
+            handleAnswer= {handleAnswer} 
+          />
+        }  
+      </div>
       
-   ) : (
-    questions.length > 0 ? (
-    <div className='question_container'>
-       
-        <Questionnaire 
-            data={questions[currentIndex]} 
-            handleAnswer= {handleAnswer} />   
-    </div>
-  ): (
+    : 
       <h1>Your Question Loading</h1>
-  ));
-    
+  :
+    <h1>You need to login before starting the quiz</h1>
+  )
 }
-
-
 export default Question;

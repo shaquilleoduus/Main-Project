@@ -12,6 +12,10 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, 'Password not correct']
+    },
+    score: {
+        type: Number,
+        required: [false]
     }
 })
 
