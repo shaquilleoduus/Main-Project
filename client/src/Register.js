@@ -10,6 +10,9 @@ function Register() {
     userPassword: ''
   });
 
+  const [message, setMessage] = useState ({
+    message: ''
+  });
   const setData = (e) => {
       setRegisterDetails({
       ...registerDetails,
@@ -24,7 +27,8 @@ function Register() {
     const body = JSON.stringify({
       userName:  registerDetails.userName,
       userEmail: registerDetails.userEmail,
-      userPassword: registerDetails.userPassword
+      userPassword: registerDetails.userPassword,
+      confirmPassword: registerDetails.confirmPassword
     });
 
     const config = {
@@ -35,6 +39,9 @@ function Register() {
     
     const resu = await axios.post("/register", body, config)
       console.log(resu);
+      setMessage({
+        message:resu.data
+      })
   }
 
   return (
@@ -45,7 +52,9 @@ function Register() {
         <input placeholder="Username"type="text" name="userName" onChange={setData}/>
         <input placeholder="Email" type="email" name="userEmail" onChange={setData}/>
         <input placeholder="Password" type="password" name="userPassword" onChange={setData}/>
+        <input placeholder="Confirm Password" type="password" name="confirmPassword" onChange={setData}/>
         <button id="button2" type="submit" onClick={submitForm}>Sign up!</button>
+        <h1>{message.message}</h1>
       </form>
     </div>
   );

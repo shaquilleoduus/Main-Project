@@ -14,7 +14,7 @@ function Nav() {
   <a href="/register">Register</a>
 
   <div class="topnav-centered">
-    <a href="#home" class="active">LeaderBoards</a>
+    <a href="/leaderboards" class="active">LeaderBoards</a>
   </div>
 
   <div class="topnav-right">
