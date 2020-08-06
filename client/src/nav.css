@@ -1,0 +1,126 @@
+body{
+    background-image:url("background.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    font-family: 'Kaushan Script', cursive;
+}
+h1{
+    color: rgb(0, 0, 0);
+}
+
+.topnav {
+    position: relative;
+    background-color: #333;
+    overflow: hidden;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: left;
+    color: #fa0778;
+    text-align: center;
+    padding: 14px 86px;
+    text-decoration: none;
+    font-size: 20px;
+  }
+  
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    background-color: #fa0778;
+    color: black;
+    box-shadow: 0 30px 30px 0 #fa0778, 0 17px 50px 0#fa0778;
+  }
+  
+  /* Add a color to the active/current link */
+  .topnav a.hover {
+    background-color: #333;
+    color: #fa0778;
+    box-shadow: 0 12px 16px 0 rgb(3, 247, 255), 0 17px 50px 0 rgb(3, 247, 255);
+  }
+  
+  /* Centered section inside the top navigation */
+  .topnav-centered a {
+    float: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Right-aligned section inside the top navigation */
+  .topnav-right {
+    float: right;
+  }
+  
+  /* Responsive navigation menu - display links on top of each other instead of next to each other (for mobile devices) */
+  @media screen and (max-width: 600px) {
+    .topnav a, .topnav-right {
+      float: none;
+      display: block;
+    }
+  
+    .topnav-centered a {
+      position: relative;
+      top: 0;
+      left: 0;
+      transform: none;
+    }
+  }
+
+
+
+
+
+.left {
+    float: left;
+    width: 95px;
+    height: 22px;
+}
+
+.right {
+    float: right;
+    width: 95px;
+    height: 22px;
+}
+
+input{
+    background-color: rgb(255, 113, 189);
+    color: rgb(3, 247, 255);
+    width:20%;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(3, 247, 255);
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: rgb(3, 247, 255);
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgb(3, 247, 255);
+  }
+
+ 
+
+  button {
+    background-color: rgb(3, 247, 255); /* Green */
+    border-color: rgb(255, 113, 189);
+    transition: ease-in-out;
+    transition-duration: 0.4s;
+    color: rgb(255, 113, 189);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width:25%;
+  }
+  button:hover {
+    background-color: rgb(255, 113, 189); /* Green */
+    color: rgb(3, 247, 255);
+    box-shadow: 0 12px 16px 0 rgb(3, 247, 255), 0 17px 50px 0 rgb(3, 247, 255);
+  }
+ 
+

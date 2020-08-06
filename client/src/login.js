@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import './App.css';
 import axios from 'axios';
+import {withRouter} from 'react-router-dom'
 
-function Login() {
+function Login({setLoginStatus, history, setUserId}) {
 
     const [registerDetails, setRegisterDetails] = useState({
       userEmail: '',
@@ -38,12 +39,13 @@ function Login() {
       }
       
       const resu = await axios.post("/login", body, config)
-        console.log(resu);
         setMessage({
           message:resu.data
         })
-        if(resu.data == "You are logged in"){
-          window.open('/questions')
+        if(resu.data[0] == "You are logged in"){
+          setLoginStatus(true)
+          setUserId(resu.data[1])
+          history.push('/question')
       }
 
     }
@@ -64,4 +66,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default withRouter(Login);

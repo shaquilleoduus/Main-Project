@@ -13,7 +13,6 @@ function Register() {
   const [message, setMessage] = useState ({
     message: ''
   });
-
   const setData = (e) => {
       setRegisterDetails({
       ...registerDetails,
@@ -28,10 +27,9 @@ function Register() {
     const body = JSON.stringify({
       userName:  registerDetails.userName,
       userEmail: registerDetails.userEmail,
-      userPassword: registerDetails.userPassword
+      userPassword: registerDetails.userPassword,
+      confirmPassword: registerDetails.confirmPassword
     });
-
- 
 
     const config = {
       headers: {
@@ -48,13 +46,14 @@ function Register() {
 
   return (
     <div>
-      <h1>Register below</h1>
+      <h1>Welcome! Please register to join Hotline Quiz!</h1>
     
       <form>
-        <input type="text" name="userName" onChange={setData}/>
-        <input type="email" name="userEmail" onChange={setData}/>
-        <input type="password" name="userPassword" onChange={setData}/>
-        <button type="submit" onClick={submitForm}>Register</button>
+        <input placeholder="Username"type="text" name="userName" onChange={setData}/>
+        <input placeholder="Email" type="email" name="userEmail" onChange={setData}/>
+        <input placeholder="Password" type="password" name="userPassword" onChange={setData}/>
+        <input placeholder="Confirm Password" type="password" name="confirmPassword" onChange={setData}/>
+        <button id="button2" type="submit" onClick={submitForm}>Sign up!</button>
         <h1>{message.message}</h1>
       </form>
     </div>
