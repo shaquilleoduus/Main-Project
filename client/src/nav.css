@@ -86,7 +86,7 @@ h1{
 input{
     background-color: rgb(255, 113, 189);
     color: rgb(3, 247, 255);
-    width:25%;
+    width:20%;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */

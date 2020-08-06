@@ -5,6 +5,8 @@ const User = require('./models/user');
 const bcrypt = require('bcryptjs');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
+const user = require('./models/user');
+
 
 dotenv.config({path: './.env' });
 
@@ -100,6 +102,17 @@ app.post("/update/:id", async (req, res) => {
     res.send("Score was added to leaderboard")
     // res.redirect("/leaderboards");
 });
+
+app.get("/LeaderBoards", async (req,res)=> {
+    const users = await User.find({})
+    res.send(JSON.stringify(users.map((user)=>{
+        return{
+            name: user.name, 
+            score: user.score
+        }
+    })))
+    
+}) 
 
 
 app.listen( 7000, () => {

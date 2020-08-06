@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 import axios from 'axios';
 import {Questionnaire} from './components';
+import {Timer} from './components'
 
 function Question({loginStatus, userId}) {
   const [questions, setQuestion] = useState([]);
@@ -58,13 +59,13 @@ function Question({loginStatus, userId}) {
           <h1>
             Your Score is {score}.
           </h1>
-        : 
-          <Questionnaire 
+        :<div>
+        <Timer/>
+        <Questionnaire 
             data={questions[currentIndex]}
             showAnswers={showAnswers}
             handleNextQuestion={handleNextQuestion}
-            handleAnswer= {handleAnswer} 
-          />
+            handleAnswer= {handleAnswer} /></div>
         }  
       </div>
       

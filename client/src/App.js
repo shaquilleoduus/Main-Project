@@ -7,8 +7,9 @@ import Login from './login'
 import Question from './Question'
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import axios from 'axios';
-import Timer from "./timer";
-import LeaderBoards from "./components/LeaderBoards.js";
+
+
+import LeaderBoards from "./LeaderBoards.js";
 
 function App(){
 let [loginStatus, setLoginStatus] = useState(false)
@@ -19,10 +20,10 @@ let [userId, setUserId] = useState(false)
     <Router>
       <div className="App">
         <Nav />
-        <Timer/>
         <Route path="/about" component={About} />
         <Route path="/register" component={Register} />
         <Route path="/leaderboards" component={LeaderBoards} />
+       
         <Route path='/login'>
           <Login setLoginStatus={setLoginStatus} setUserId={setUserId}/>
         </Route>
