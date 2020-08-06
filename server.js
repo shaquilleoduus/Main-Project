@@ -94,7 +94,7 @@ app.post("/update/:id", async (req, res) => {
     const email = req.params.id;
     const user = await User.find({ email: email});
 
-    await User.updateOne({email: email}, {
+    await User.findOneAndUpdate({email: email}, {
         score: user[0].score +1
     });
     res.send("Score was added to leaderboard")
