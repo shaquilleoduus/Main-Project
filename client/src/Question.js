@@ -46,6 +46,9 @@ function Question({loginStatus, userId}) {
   const handleNextQuestion = () => {
     setShowAnswers(false);
     setCurrentIndex(currentIndex + 1);
+
+
+    
   };
   return(
     loginStatus
