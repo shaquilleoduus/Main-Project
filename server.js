@@ -106,8 +106,10 @@ app.get("/LeaderBoards", async (req,res)=> {
     res.send(JSON.stringify(users.map((user)=>{
         return{
             name: user.name, 
-            score: user.score
+            score: user.score || 0
         }
+    }).sort((a,b)=>{
+        return b.score - a.score;
     })))
     
 }) 
