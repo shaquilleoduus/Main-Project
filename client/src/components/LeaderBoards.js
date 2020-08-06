@@ -2,9 +2,15 @@ import React, {useState, useEffect} from 'react';
 import '../App.css';
 import axios from 'axios';
 
-export default function LeaderBoards(){
+import React, {useState, useEffect} from 'react';
+
+import axios from 'axios';
+import {DataFetch} from './components'
+
+function Leaderboard(){
     return(
-        <h1> LeaderBoards </h1>
-        
+        <div> <DataFetch/> </div>
     )
 }
+
+export default Leaderboard
