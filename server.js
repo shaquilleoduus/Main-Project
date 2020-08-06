@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const User = require('./models/user');
 
+
+
 dotenv.config({path: './.env' });
 
 const app = express();
@@ -43,6 +45,8 @@ app.post("/register", async(req, res) => {
         res.send("Email is already in the Database");
     }
 });
+
+
 
 app.listen( 7000, () => {
     console.log("Server is running on Port 7000");

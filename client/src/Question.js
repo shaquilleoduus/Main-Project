@@ -3,11 +3,13 @@ import './App.css';
 import axios from 'axios';
 import {Questionnaire} from './components';
 
-function Question() {
+function Question({
+  category, difficult
+}) {
   const [questions, setQuestion] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
-  const [gameEnded, setGameEnded] = useState(false);
+  const [showAnswers, setShowAnswers] = useState(false);
 
   useEffect( () => {
     getAPI();
@@ -15,39 +17,64 @@ function Question() {
   }, [])
 
   const getAPI = async() => {
-    const res = await axios.get('https://opentdb.com/api.php?amount=10&category=18&difficulty=hard&type=multiple')
-    console.log(res.data);  //res.data.value
 
-    setQuestion(res.data.results);
+    const Url = `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficult}&type=multiple`
+    
+    const res = await axios.get(Url)
+    console.log(Url)
+    console.log(res.data);  //res.data.value
+    
+    const questions = res.data.results.map((question) =>
+    ({
+      ...question, answers: [question.correct_answer,
+      ...question.incorrect_answers
+    ].sort(() => Math.random() - 0.5),
+    }));
+
+    setQuestion(questions);
     
   }
 
   const handleAnswer = (answer) => {
-      const newIndex = currentIndex +1
-    setCurrentIndex(newIndex);
+    if(!showAnswers) {
+    
 
-    if(answer === questions[currentIndex].correct_answer) {
-        setScore(score + 1);
+      if(answer === questions[currentIndex].
+        correct_answer) {
+          setScore(score + 1);
+      }
     }
 
-    if(newIndex >= questions.length) {
-        setGameEnded(true);
-    }
+    setShowAnswers(true);
   };
+    // if(newIndex >= questions.length) {
+    //     setGameEnded(true);
+    // }
+  const handleNextQuestion = () => {
+    setShowAnswers(false);
 
-  return gameEnded ? (
-  <h1>Your Score was {score}</h1>
+    setCurrentIndex(currentIndex + 1);
+  };
+  
+
+  return questions.length > 0 ? (
+    <div>
+      {currentIndex >= questions.length ? (
+        <h1>
+          Your Score was {score}.
+        </h1>
       
-   ) : (
-    questions.length > 0 ? (
-    <div className='question_container'>
+      ) : (
         <Questionnaire 
-            data={questions[currentIndex]} 
-            handleAnswer= {handleAnswer} />   
+            data={questions[currentIndex]}
+            showAnswers={showAnswers}
+            handleNextQuestion={handleNextQuestion}
+            handleAnswer= {handleAnswer} />
+      )}  
     </div>
   ): (
-      <h1>Your Question Loading</h1>
-  ));
+      <h1>Keep Calm Your Questions are Loading</h1>
+  );
     
 }
 

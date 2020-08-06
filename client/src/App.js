@@ -5,8 +5,9 @@ import About from './About'
 import Register from './Register'
 import Login from './Login'
 import Question from './Question'
-import questionCategory from './questionCategory';
+import questionCategory from './components/questionCategory';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Selection from './Selection';
 import axios from 'axios';
 
 function App(){
@@ -21,6 +22,7 @@ function App(){
         <Route path="/login" component={Login} />
         <Route path="/question" component={Question} />
         <Route path="/questioncategory" component={questionCategory} />
+        <Route path="/selection" component={Selection} />
       </div>
     </Router>
   );
