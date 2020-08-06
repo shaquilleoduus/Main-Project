@@ -6,7 +6,7 @@ function DataFetch() {
     // const user =  User.find().sort({ score: -1}) 
     const[user,setPosts] = useState([])
     console.log("Working")
-     axios.get("/Leaderboards")
+     axios.get("/LeaderBoards")
         .then(res =>{
             console.log(res)
             setPosts(res.data)

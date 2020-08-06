@@ -101,6 +101,17 @@ app.post("/update/:id", async (req, res) => {
     // res.redirect("/leaderboards");
 });
 
+app.get("/LeaderBoards", async (req,res)=> {
+    const users = await User.find({})
+    res.send(JSON.stringify(users.map((user)=>{
+        return{
+            name: user.name, 
+            score: user.score
+        }
+    })))
+    
+}) 
+
 
 app.listen( 7000, () => {
     console.log("Server is running on Port 7000");
