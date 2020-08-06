@@ -57,8 +57,8 @@ function Login({setLoginStatus, history, setUserId}) {
         <h1>Please log in to start the quiz!</h1>
       
         <form>
-          <input type="email" name="userEmail" onChange={setData}/>
-          <input type="password" name="userPassword" onChange={setData}/>
+          <input type="email" name="userEmail" onChange={setData} placeholder="Email"/>
+          <input type="password" name="userPassword" onChange={setData} placeholder="Password"/>
           <button type="submit" onClick={submitForm}>login</button>
         <h1>{message.message}</h1>
         </form>
