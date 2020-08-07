@@ -41,11 +41,12 @@ function Login({setLoginStatus, history, setUserId}) {
       const resu = await axios.post("/login", body, config)
         setMessage({
           message:resu.data
+          
         })
         if(resu.data[0] == "You are logged in"){
-          setLoginStatus(true)
+         setLoginStatus(true)
           setUserId(resu.data[1])
-          history.push('/question')
+          history.push('/questionCategory')
       }
 
     }

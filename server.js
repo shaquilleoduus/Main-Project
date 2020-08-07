@@ -80,7 +80,9 @@ app.post("/login", async (req, res) => {
                 httpOnly: true
             }
             res.cookie('jwt', token, cookieOptions);
+            console.log(cookieOptions);
             res.send(["You are logged in", user[0].email]);
+
         } else {
             res.send("Your login details are wrong");
         }

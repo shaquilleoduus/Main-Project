@@ -5,7 +5,7 @@ import {Redirect} from "react-router-dom";
 
 import axios from 'axios';
 
-function QuestionCategory() {
+function QuestionCategory({loginStatus, userId}) {
 
     const [category, setCategory] = useState("");
     const [difficult, setDifficult] = useState("");
@@ -29,6 +29,11 @@ function QuestionCategory() {
         e.preventDefault();
         console.log(category)
         console.log(difficult)
+        console.log(loginStatus)
+        console.log(userId)
+
+    
+        
        // console.log(window.location.href)
         // window.history.pushState({
         //     "category/difficult": `${category}/${difficult}`
@@ -53,12 +58,16 @@ function QuestionCategory() {
             <Question 
             category={category} 
             difficult={difficult}
+            loginStatus={loginStatus} 
+            userId={userId}
             />
         )
     } else {
 
     
         return (   
+            loginStatus
+            ?
             <div>   
                 <form>
                 <select onChange={updateCategory} placeholder="Select Category">
@@ -80,7 +89,10 @@ function QuestionCategory() {
             </div>
 
             
-        )    
+        
+        :
+    <h1>You need to login before starting the quiz</h1>
+        )
     }
         
     

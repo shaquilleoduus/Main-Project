@@ -3,7 +3,7 @@ import './App.css';
 import axios from 'axios';
 import {Questionnaire} from './components';
 
-function Question({loginStatus, userId}) {
+function Question({loginStatus, userId, category, difficult}) {
   const [questions, setQuestion] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -13,11 +13,16 @@ function Question({loginStatus, userId}) {
 
   useEffect( () => {
     getAPI();
+    console.log(category);
+    console.log(difficult);
+    console.log(userId);
+    console.log(loginStatus);
     console.log("Page Loaded");
   }, [loginStatus])
 
   const getAPI = async() => {
-    const res = await axios.get('https://opentdb.com/api.php?amount=10&category=18&difficulty=hard&type=multiple')
+    
+    const res = await axios.get(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficult}&type=multiple`)
     console.log(res.data);  //res.data.value
 
     const questions = res.data.results.map((question) =>

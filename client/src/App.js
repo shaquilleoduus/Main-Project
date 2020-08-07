@@ -16,6 +16,7 @@ let [loginStatus, setLoginStatus] = useState(false)
 let [userId, setUserId] = useState(false)
 
 
+
   return (
     <Router>
       <div className="App">
@@ -24,13 +25,14 @@ let [userId, setUserId] = useState(false)
         <Route path="/about" component={About} />
         <Route path="/register" component={Register} />
         <Route path="/leaderboards" component={LeaderBoards} />
-        <Route path='/questionCategory' component={QuestionCategory} />
+        <Route path='/question' component={Question} />
         <Route path='/login'>
           <Login setLoginStatus={setLoginStatus} setUserId={setUserId}/>
         </Route>
-        <Route path="/question">
-          <Question loginStatus={loginStatus} userId={userId} />
+        <Route path="/questionCategory">
+          <QuestionCategory loginStatus={loginStatus} userId={userId} />
         </Route>
+       
       </div>
     </Router>
   );
