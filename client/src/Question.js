@@ -3,7 +3,7 @@ import './App.css';
 import axios from 'axios';
 import {Questionnaire} from './components';
 
-function Question({loginStatus, userId}) {
+function Question({loginStatus, userId, category, difficult}) {
   const [questions, setQuestion] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -17,7 +17,7 @@ function Question({loginStatus, userId}) {
   }, [loginStatus])
 
   const getAPI = async() => {
-    const res = await axios.get('https://opentdb.com/api.php?amount=10&category=18&difficulty=hard&type=multiple')
+    const res = await axios.get(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficult}&type=multiple`)
     console.log(res.data);  //res.data.value
 
     const questions = res.data.results.map((question) =>
@@ -30,19 +30,27 @@ function Question({loginStatus, userId}) {
   }
 
   const handleAnswer = (answer) => {
+    let newScore = score + 1
     if(!showAnswers) {
       if(answer === questions[currentIndex].
         correct_answer) {
-          setScore(score + 1);
-          fetch('/update/'+userId, {method:'POST'})
+          
+          setScore(newScore);
+      
       }
     }
     setShowAnswers(true);
+    
   };
     // if(newIndex >= questions.length) {
     //     setGameEnded(true);
     // }
   const handleNextQuestion = () => {
+    if (currentIndex+1 >= questions.length){
+      fetch('/update/'+userId +"/"+score, {method:'POST'})
+          .then(res=>res.text())
+          .then(text=>alert(text))
+    }
     setShowAnswers(false);
     setCurrentIndex(currentIndex + 1);
   };

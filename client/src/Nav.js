@@ -18,7 +18,7 @@ function Nav() {
   </div>
 
   <div class="topnav-right">
-    <a href="/question">Quiz</a>
+    <a href="/questionCategory">Quiz</a>
     <a href="/login">Login</a>
   </div>
 
