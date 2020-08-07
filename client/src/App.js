@@ -24,12 +24,14 @@ let [userId, setUserId] = useState(false)
         <Route path="/about" component={About} />
         <Route path="/register" component={Register} />
         <Route path="/leaderboards" component={LeaderBoards} />
-        <Route path='/questionCategory' component={QuestionCategory} />
         <Route path='/login'>
           <Login setLoginStatus={setLoginStatus} setUserId={setUserId}/>
         </Route>
-        <Route path="/question">
+        {/* <Route path="/question">
           <Question loginStatus={loginStatus} userId={userId} />
+        </Route> */}
+        <Route path="/questionCategory">
+          <QuestionCategory loginStatus={loginStatus} userId={userId} />
         </Route>
       </div>
     </Router>

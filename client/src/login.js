@@ -45,7 +45,7 @@ function Login({setLoginStatus, history, setUserId}) {
         if(resu.data[0] == "You are logged in"){
           setLoginStatus(true)
           setUserId(resu.data[1])
-          history.push('/question')
+          history.push('/questionCategory')
       }
 
     }

@@ -89,16 +89,21 @@ app.post("/login", async (req, res) => {
     }
 });
 
-app.post("/update/:id", async (req, res) => {
+app.post("/update/:id/:score", async (req, res) => {
     // const score = req.body.score;
     const email = req.params.id;
+    const score = req.params.score;
     const user = await User.find({ email: email});
+    if(score>user[0].score)
+    {
+        await User.updateOne({email: email}, {
+            score: score
+        });
+        res.send("Your new score is " + score)
+    } else {
+        res.send("You did not beat your record")
+    }
 
-    await User.updateOne({email: email}, {
-        score: user[0].score +1
-    });
-    res.send("Score was added to leaderboard")
-    // res.redirect("/leaderboards");
 });
 
 app.get("/LeaderBoards", async (req,res)=> {
