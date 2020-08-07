@@ -66,7 +66,7 @@ function Question({loginStatus, userId, category, difficult}) {
           <h1>
             Your Score is {score}.
           </h1>
-        : 
+        :  
           <Questionnaire 
             data={questions[currentIndex]}
             showAnswers={showAnswers}
